@@ -9,7 +9,6 @@ const algorithmMap = {
     ],
     greedy: [
         { id: 'fractional_knapsack', name: 'Fractional Knapsack' },
-        { id: 'activity_selection', name: 'Activity Selection' },
         { id: 'kruskal', name: "Kruskal's Algorithm (MST)" },
         { id: 'prim', name: "Prim's Algorithm (MST)" },
         { id: 'optimal_merge', name: 'Optimal Merge Pattern' }

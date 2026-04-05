@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAA Algorithms Playground</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+
+    <head>:
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
 
 <body>
 
@@ -39,9 +42,16 @@
                 <strong>Input Format Guide:</strong>
                 <ul>
                     <li><strong>Array/List:</strong> Comma-separated values → "5,3,1,2"</li>
+                    <li><strong>Binary Search:</strong> Array,target → "5,3,1,2,3" (searches for 3)</li>
                     <li><strong>Single Value:</strong> For n (fibonacci, n-queens) → "8"</li>
-                    <li><strong>Two Lists:</strong> Separated by semicolon → "1,2;2,1" (for activity, LCS)</li>
+                    <li><strong>Two Lists:</strong> Separated by semicolon → "AGGTAB;GXTXAYB" (for LCS)</li>
                     <li><strong>Three Lists:</strong> values;weights;capacity → "60,100;10,20;50"</li>
+                    <li><strong>Kruskal/Prim (MST):</strong> First line = n (vertices), then edges (u v w) → "4\n0 1
+                        1\n0 2 2\n1 2 3\n2 3 4"</li>
+                    <li><strong>Strassen Matrix Multiply:</strong> Two 2×2 matrices (4 rows) → "1 2\n3 4\n5 6\n7 8"
+                        (first 2 rows = Matrix A, next 2 rows = Matrix B)</li>
+                    <li><strong>Matrix Chain Multiply:</strong> Dimension array → "10 20 30 40" (for matrices 10×20,
+                        20×30, 30×40)</li>
                 </ul>
             </div>
 
