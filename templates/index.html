@@ -17,34 +17,39 @@
         <h1>DAA Algorithms Playground</h1>
         <p class="subtitle">Design & Analysis of Algorithms - Interactive Simulator</p>
 
-        <section class="controls">
-            <div class="control-group">
-                <label for="category">Algorithm Paradigm:</label>
-                <select id="category">
-                    <option value="divide">Divide & Conquer</option>
-                    <option value="greedy">Greedy</option>
-                    <option value="dynamic">Dynamic Programming</option>
-                    <option value="backtracking">Backtracking</option>
-                </select>
-            </div>
+        <div class="main-wrapper">
+            <section class="controls">
+                <div class="control-group">
+                    <label for="category">Algorithm Paradigm:</label>
+                    <select id="category">
+                        <option value="divide">Divide & Conquer</option>
+                        <option value="greedy">Greedy</option>
+                        <option value="dynamic">Dynamic Programming</option>
+                        <option value="backtracking">Backtracking</option>
+                    </select>
+                </div>
 
-            <div class="control-group">
-                <label for="algorithm">Select Algorithm:</label>
-                <select id="algorithm"></select>
-            </div>
+                <div class="control-group">
+                    <label for="algorithm">Select Algorithm:</label>
+                    <select id="algorithm"></select>
+                </div>
 
-            <div class="control-group">
-                <label for="inputData">Input Data:</label>
-                <textarea id="inputData" rows="3" placeholder="Enter input (see format guide below)"></textarea>
-            </div>
+                <div class="control-group">
+                    <label for="inputData">Input Data:</label>
+                    <textarea id="inputData" rows="3" placeholder="Enter input (see format guide on right)"></textarea>
+                </div>
 
-            <div class="instructions">
+                <button id="runBtn" class="btn-primary">▶ Run Algorithm</button>
+            </section>
+
+            <aside class="instructions">
                 <strong>Input Format Guide:</strong>
                 <ul>
                     <li><strong>Array/List:</strong> Comma-separated values → "5,3,1,2"</li>
                     <li><strong>Binary Search:</strong> Array,target → "5,3,1,2,3" (searches for 3)</li>
                     <li><strong>Single Value:</strong> For n (fibonacci, n-queens) → "8"</li>
-                    <li><strong>Two Lists:</strong> Separated by semicolon → "AGGTAB;GXTXAYB" (for LCS)</li>
+                    <li><strong>LCS (Longest Common Subsequence):</strong> Two strings separated by semicolon →
+                        "AGGTAB;GXTXAYB" (finds longest common subsequence)</li>
                     <li><strong>Three Lists:</strong> values;weights;capacity → "60,100;10,20;50"</li>
                     <li><strong>Kruskal/Prim (MST):</strong> First line = n (vertices), then edges (u v w) → "4\n0 1
                         1\n0 2 2\n1 2 3\n2 3 4"</li>
@@ -52,11 +57,11 @@
                         (first 2 rows = Matrix A, next 2 rows = Matrix B)</li>
                     <li><strong>Matrix Chain Multiply:</strong> Dimension array → "10 20 30 40" (for matrices 10×20,
                         20×30, 30×40)</li>
+                    <li><strong>TSP (Traveling Salesman Problem):</strong> Distance matrix rows separated by newline →
+                        "0 10 15 20\n10 0 35 25\n15 35 0 30\n20 25 30 0" (finds shortest tour visiting all cities)</li>
                 </ul>
-            </div>
-
-            <button id="runBtn" class="btn-primary">▶ Run Algorithm</button>
-        </section>
+            </aside>
+        </div>
 
         <section class="result">
             <h2>Results</h2>
