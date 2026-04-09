@@ -104,13 +104,21 @@ def run_algorithm():
                 arr = list(map(int, array_part.split(',')))
                 arr.sort()  # Binary search requires sorted array
                 
-                index = binary_search(arr, target)
+                index, found_at_first = binary_search(arr, target)
                 if index == -1:
                     result = f"{target} not found in array"
+                    complexity = "O(log n)"
+                    operations = len(bin(len(arr))) - 2
                 else:
                     result = f"{target} found at index {index}"
-                complexity = "O(log n)"
-                operations = len(bin(len(arr))) - 2
+                    if found_at_first:
+                        # Found at first mid check
+                        operations = 1
+                        complexity = "O(1) - Found at first check!"
+                    else:
+                        complexity = "O(log n)"
+                        operations = len(bin(len(arr))) - 2
+                
                 explanation = f"Search for {target} in sorted array {arr} by repeatedly dividing search interval in half"
                 
                 # Generate steps

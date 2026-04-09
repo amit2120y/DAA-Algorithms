@@ -31,15 +31,20 @@ def quick_sort(arr):
 
 def binary_search(arr, target):
     l, r = 0, len(arr)-1
+    first_check = True
+    
     while l <= r:
         mid = (l+r)//2
         if arr[mid] == target:
-            return mid
+            # Return index and flag indicating if found at first check
+            return mid, first_check
         elif arr[mid] < target:
             l = mid + 1
         else:
             r = mid - 1
-    return -1
+        first_check = False
+    
+    return -1, False
 
 def heap_sort(arr):
     """Heap Sort - O(n log n)"""
