@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import time
 import traceback
+import math
 
 # Import all algorithms
 from algorithms.divide_conquer import merge_sort, quick_sort, binary_search, heap_sort, strassen_multiply
@@ -43,7 +44,8 @@ def run_algorithm():
                 original_arr = arr.copy()
                 result = merge_sort(arr)
                 complexity = "O(n log n)"
-                operations = len(arr) * (1 + len(bin(len(arr))) - 2)
+                n = len(arr)
+                operations = int(n * math.log2(n)) if n > 1 else n
                 explanation = "Divide and conquer approach: divide array in half, sort recursively, then merge"
                 
                 # Generate steps for merge sort
@@ -73,7 +75,7 @@ def run_algorithm():
                     explanation = "Partition-based sorting: array is already sorted (increasing or decreasing), leading to worst-case O(n²) complexity"
                 else:
                     # Unsorted: average case O(n log n)
-                    operations = n * (1 + len(bin(n)) - 2)
+                    operations = int(n * math.log2(n)) if n > 1 else n
                     complexity = "O(n log n) average, O(n²) worst"
                     explanation = "Partition-based sorting: select pivot, partition array, recursively sort subarrays"
                 
@@ -140,7 +142,8 @@ def run_algorithm():
                 original_arr = arr.copy()
                 result = heap_sort(arr)
                 complexity = "O(n log n)"
-                operations = len(arr) * (1 + len(bin(len(arr))) - 2)
+                n = len(arr)
+                operations = int(n * math.log2(n)) if n > 1 else n
                 explanation = "Build max heap, extract elements in order to sort array"
                 
                 steps = [
@@ -156,7 +159,8 @@ def run_algorithm():
                 B = [list(map(int, line.split())) for line in lines[2:]]
                 result = strassen_multiply(A, B)
                 complexity = "O(n^2.807)"
-                operations = int(7 ** (len(bin(len(A))) - 2))
+                n = len(A)
+                operations = int(7 ** math.log2(n)) if n > 1 else 7
                 explanation = "Recursive matrix multiplication using 7 multiplications instead of 8"
                 
                 steps = [
@@ -187,7 +191,8 @@ def run_algorithm():
                 capacity = int(lines[2])
                 result = fractional_knapsack(values, weights, capacity)
                 complexity = "O(n log n)"
-                operations = len(values) * (1 + len(bin(len(values))) - 2)
+                n = len(values)
+                operations = int(n * math.log2(n)) if n > 1 else n
                 explanation = "Greedy approach: sort items by value/weight ratio, fill knapsack in order"
                 
                 # Generate steps
@@ -212,7 +217,8 @@ def run_algorithm():
                 mst, cost = kruskal_algorithm(n, edges)
                 result = {"mst": mst, "cost": cost}
                 complexity = "O(E log E)"
-                operations = len(edges) * (1 + len(bin(len(edges))) - 2)
+                e = len(edges)
+                operations = int(e * math.log2(e)) if e > 1 else e
                 explanation = "Find minimum spanning tree using union-find and greedy edge selection"
                 
                 steps = [
@@ -236,7 +242,7 @@ def run_algorithm():
                 mst, cost = prim_algorithm(n, edges)
                 result = {"mst": mst, "cost": cost}
                 complexity = "O(E log V)"
-                operations = len(edges) * (1 + len(bin(n)) - 2)
+                operations = int(len(edges) * math.log2(n)) if n > 1 else len(edges)
                 explanation = "Build MST by greedily adding minimum weight edges using priority queue"
                 
                 steps = [
@@ -256,7 +262,8 @@ def run_algorithm():
                 cost, merges = optimal_merge_pattern(file_sizes)
                 result = {"cost": cost, "merges": merges}
                 complexity = "O(n log n)"
-                operations = len(file_sizes) * (1 + len(bin(len(file_sizes))) - 2)
+                n = len(file_sizes)
+                operations = int(n * math.log2(n)) if n > 1 else n
                 explanation = "Determine optimal order to merge files to minimize total operations"
                 
                 steps = [
