@@ -234,14 +234,15 @@ def run_algorithm():
                 complexity = "O(E log E)"
                 e = len(edges)
                 operations = int(e * math.log2(e)) if e > 1 else e
-                explanation = "Find minimum spanning tree using union-find and greedy edge selection"
+                explanation = "Kruskal's Algorithm: Sort edges by weight, use Union-Find to detect cycles, greedily add edges that don't create cycles"
                 
                 steps = [
-                    {"description": f"Graph with {n} vertices", "detail": f"Create union-find data structure"},
-                    {"description": "Sort edges by weight", "detail": f"Total edges: {len(edges)}"},
-                    {"description": "Process edges in ascending weight order", "detail": "Use greedy approach to select edges"},
-                    {"description": "Union-Find operations", "detail": "Check if edge creates cycle, if not add to MST"},
-                    {"description": f"Minimum Spanning Tree Cost: {cost}", "detail": f"Edges in MST: {mst}"}
+                    {"description": f"Graph structure", "detail": f"{n} vertices, {len(edges)} edges"},
+                    {"description": "Step 1: Initialize Union-Find", "detail": f"Create data structure to track connected components"},
+                    {"description": "Step 2: Sort all edges by weight", "detail": f"Process edges from smallest to largest weight"},
+                    {"description": "Step 3: Process edges greedily", "detail": "For each edge, check if both vertices are in different components"},
+                    {"description": "Step 4: Detect cycles with Union-Find", "detail": "Only add edges that don't create cycles (different components)"},
+                    {"description": f"Result: MST with {len(mst)} edges", "detail": f"Total weight: {cost}"}
                 ]
                 
             elif algorithm == 'prim':

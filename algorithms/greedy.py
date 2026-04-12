@@ -25,38 +25,73 @@ def fractional_knapsack(weights, values, capacity):
     return total_profit
 
 def kruskal_algorithm(n, edges):
-    """Kruskal's Algorithm for Minimum Spanning Tree - O(E log E)"""
+    """
+    Kruskal's Algorithm for Minimum Spanning Tree - O(E log E)
+    
+    Greedy approach: Sort edges by weight, add edges without creating cycles.
+    Uses Union-Find (Disjoint Set Union) to efficiently detect cycles.
+    
+    Args:
+        n: Number of vertices
+        edges: List of tuples (vertex1, vertex2, weight)
+    
+    Returns:
+        mst: List of edges in the minimum spanning tree
+        total_weight: Total weight of the MST
+    """
+    
     class UnionFind:
+        """Data structure to efficiently detect cycles (connected components)"""
         def __init__(self, n):
-            self.parent = list(range(n))
-            self.rank = [0] * n
+            self.parent = list(range(n))  # Each vertex is its own parent initially
+            self.rank = [0] * n  # Track tree depth for optimization
         
         def find(self, x):
+            """Find the root/representative of vertex x's component"""
             if self.parent[x] != x:
-                self.parent[x] = self.find(self.parent[x])
+                self.parent[x] = self.find(self.parent[x])  # Path compression
             return self.parent[x]
         
         def union(self, x, y):
-            px, py = self.find(x), self.find(y)
-            if px == py:
+            """
+            Union two components. Returns True if successful (no cycle),
+            False if they're already in the same component (would create cycle)
+            """
+            root_x = self.find(x)
+            root_y = self.find(y)
+            
+            # Already in same component → would create a cycle
+            if root_x == root_y:
                 return False
-            if self.rank[px] < self.rank[py]:
-                px, py = py, px
-            self.parent[py] = px
-            if self.rank[px] == self.rank[py]:
-                self.rank[px] += 1
+            
+            # Union by rank: attach smaller tree under larger tree
+            if self.rank[root_x] < self.rank[root_y]:
+                self.parent[root_x] = root_y
+            elif self.rank[root_x] > self.rank[root_y]:
+                self.parent[root_y] = root_x
+            else:
+                self.parent[root_y] = root_x
+                self.rank[root_x] += 1
+            
             return True
     
-    # edges format: [(u, v, weight), ...]
+    # Step 1: Sort all edges by weight (ascending)
     edges_sorted = sorted(edges, key=lambda x: x[2])
+    
+    # Step 2: Initialize Union-Find data structure
     uf = UnionFind(n)
     mst = []
     total_weight = 0
     
+    # Step 3: Greedily add edges if they don't create cycles
     for u, v, w in edges_sorted:
+        # Try to union the two components
         if uf.union(u, v):
+            # Edge added successfully (no cycle created)
             mst.append((u, v, w))
             total_weight += w
+            
+            # MST always has exactly (V - 1) edges
             if len(mst) == n - 1:
                 break
     

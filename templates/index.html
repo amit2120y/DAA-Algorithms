@@ -53,8 +53,9 @@
                         "AGGTAB;GXTXAYB" (finds longest common subsequence)</li>
                     <li><strong>Fractional Knapsack:</strong> Three lines → values (line 1), weights (line 2), capacity
                         (line 3) → "60 100\n10 20\n50" (profits 60,100 with weights 10,20 and capacity 50)</li>
-                    <li><strong>Kruskal/Prim (MST):</strong> First line = n (vertices), then edges (u v w) → "4\n0 1
-                        1\n0 2 2\n1 2 3\n2 3 4"</li>
+                    <li><strong>Kruskal/Prim (MST):</strong> First line = n (vertices), then edges (u v w: vertex1
+                        vertex2 weight) → "4\n0 1 1\n0 2 2\n1 2 3\n2 3 4"
+                        (Kruskal uses Union-Find to detect cycles; Prim uses priority queue)</li>
                     <li><strong>Strassen Matrix Multiply:</strong> Two n×n square matrices (n must be power of 2: 2, 4,
                         8, 16...) →
                         For 2×2: "1 2\n3 4\n5 6\n7 8" (4 total rows) |
