@@ -323,7 +323,6 @@ def run_algorithm():
                 ]
                 
             elif algorithm == 'lcs':
-                # Handle both newline-separated and semicolon-separated input
                 if '\n' in input_data:
                     lines = input_data.strip().split('\n')
                 else:
@@ -331,18 +330,20 @@ def run_algorithm():
                 
                 X = lines[0].strip()
                 Y = lines[1].strip()
-                result = lcs(X, Y)
+                length, sequence = lcs(X, Y)
                 complexity = "O(n*m)"
                 operations = len(X) * len(Y)
-                explanation = "Find longest common subsequence using 2D DP table"
+                explanation = "Find longest common subsequence using DP table with backtracking"
                 
                 steps = [
                     {"description": "First string (X)", "detail": f"'{X}'"},
                     {"description": "Second string (Y)", "detail": f"'{Y}'"},
                     {"description": f"Create DP table: ({len(X)+1}) x ({len(Y)+1})", "detail": "Initialize first row and column to 0"},
-                    {"description": "Fill DP table", "detail": f"If X[i]==Y[j]: dp[i][j]=dp[i-1][j-1]+1"},
-                    {"description": f"Longest Common Subsequence: '{result}'", "detail": f"Length: {len(result)}"}
+                    {"description": "Fill DP table", "detail": f"If X[i]==Y[j]: dp[i][j]=dp[i-1][j-1]+1, else: max(dp[i-1][j], dp[i][j-1])"},
+                    {"description": "Backtrack to find sequence", "detail": "Trace from end to start to reconstruct LCS"},
+                    {"description": f"Length: {length}", "detail": f"Sequence: '{sequence}'"}
                 ]
+                result = f"Length: {length} | Sequence: '{sequence}'"
                 
             elif algorithm == 'matrix_chain':
                 # Handle both space and comma separated values

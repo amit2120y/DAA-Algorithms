@@ -13,17 +13,36 @@ def knapsack_dp(values, weights, W):
     return dp[n][W]
 
 def lcs(X, Y):
-    m, n = len(X), len(Y)
-    dp = [[0]*(n+1) for _ in range(m+1)]
+    n = len(X)
+    m = len(Y)
+    l = {}
 
-    for i in range(m):
-        for j in range(n):
-            if X[i] == Y[j]:
-                dp[i+1][j+1] = dp[i][j] + 1
+    for i in range(n + 1):
+        l[(i, 0)] = 0
+    for j in range(m + 1):
+        l[(0, j)] = 0
+
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            if X[i - 1] == Y[j - 1]:
+                l[(i, j)] = l[(i - 1, j - 1)] + 1
             else:
-                dp[i+1][j+1] = max(dp[i][j+1], dp[i+1][j])
+                l[(i, j)] = max(l[(i - 1, j)], l[(i, j - 1)])
 
-    return dp[m][n]
+    lcs_sequence = []
+    i, j = n, m
+    while i > 0 and j > 0:
+        if X[i - 1] == Y[j - 1]:
+            lcs_sequence.append(X[i - 1])
+            i -= 1
+            j -= 1
+        elif l[(i - 1, j)] > l[(i, j - 1)]:
+            i -= 1
+        else:
+            j -= 1
+
+    lcs_sequence.reverse()
+    return l[(n, m)], ''.join(lcs_sequence)
 
 def matrix_chain_multiply(dimensions):
     n = len(dimensions) - 1
